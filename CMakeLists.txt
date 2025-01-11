@@ -708,10 +708,12 @@ IF(WITH_UNIT_TESTS AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/test/CMakeLists.txt")
 ENDIF()
 
 # Packaging
-INCLUDE(packaging)
-MESSAGE(STATUS "License File: ${CPACK_RESOURCE_FILE_LICENSE}")
-MESSAGE(STATUS "ReadMe File: ${CPACK_PACKAGE_DESCRIPTION_FILE}")
-MESSAGE(STATUS "Source Package Filename: ${CPACK_SOURCE_PACKAGE_FILE_NAME}.${CPACK_SOURCE_GENERATOR}")
+IF(NOT IGNORE_PACKAGING)
+	INCLUDE(packaging)
+	MESSAGE(STATUS "License File: ${CPACK_RESOURCE_FILE_LICENSE}")
+	MESSAGE(STATUS "ReadMe File: ${CPACK_PACKAGE_DESCRIPTION_FILE}")
+	MESSAGE(STATUS "Source Package Filename: ${CPACK_SOURCE_PACKAGE_FILE_NAME}.${CPACK_SOURCE_GENERATOR}")
+endif()
 
 # install_test/CMakeLists.txt configuration should go after packaging.cmake but before include(CPack). Since CPack included in packaging cmake,
 # that configuration has been moved there. For the same reason there also moved the message with package name

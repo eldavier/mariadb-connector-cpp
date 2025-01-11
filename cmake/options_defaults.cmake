@@ -6,6 +6,7 @@
 #  For details see the COPYING-CMAKE-SCRIPTS file.
 #
 
+OPTION(IGNORE_PACKAGING "Ignore packaging (when subproject and such)" OFF)
 OPTION(CONC_WITH_UNIT_TESTS "Build C/C unit tests" OFF)
 OPTION(WITH_ASAN "Compile with ASAN" OFF)
 OPTION(WITH_UBSAN "Enable undefined behavior sanitizer" OFF)
