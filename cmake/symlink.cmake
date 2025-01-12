@@ -29,7 +29,9 @@ IF(UNIX)
   ENDIF()
 
   # presumably this will be used for libmysql*.so symlinks
+  if(NOT IGNORE_PACKAGING)
   INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/${symlink_name} DESTINATION ${install_path}
           COMPONENT Development)
+  endif()
 ENDIF()
 ENDMACRO()

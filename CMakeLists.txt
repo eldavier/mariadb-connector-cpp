@@ -450,10 +450,12 @@ IF(NOT USE_SYSTEM_INSTALLED_LIB)
     ENDIF()
     MESSAGE(STATUS "Running C/C cmake scripts")
     INCLUDE(connector_c)
-    INSTALL(FILES
-            $<TARGET_FILE:libmariadb>
-            DESTINATION ${INSTALL_LIBDIR}
-            COMPONENT ConCLib)
+	if(NOT IGNORE_PACKAGING)
+		INSTALL(FILES
+				$<TARGET_FILE:libmariadb>
+				DESTINATION ${INSTALL_LIBDIR}
+				COMPONENT ConCLib)
+	endif()
     MESSAGE(STATUS "Configuring to install libmariadb to ${INSTALL_LIBDIR}")
 
     SET(OWN_PLUGINS_LIST mysql_clear_password dialog client_ed25519 sha256_password caching_sha2_password)
@@ -468,10 +470,12 @@ IF(NOT USE_SYSTEM_INSTALLED_LIB)
         MESSAGE(STATUS "Configuring to install ${CC_PLUGIN} to ${INSTALL_PLUGINDIR}")
 		IF(WIN32 AND NOT ALL_PLUGINS_STATIC)
 			ADD_DEPENDENCIES(DEPENDENCIES_FOR_PACKAGE ${CC_PLUGIN})
-			INSTALL(FILES
-                $<TARGET_FILE:${CC_PLUGIN}>
-                DESTINATION ${INSTALL_PLUGINDIR}
-                COMPONENT ConCPlugins)
+			if(NOT IGNORE_PACKAGING)
+				INSTALL(FILES
+					$<TARGET_FILE:${CC_PLUGIN}>
+					DESTINATION ${INSTALL_PLUGINDIR}
+					COMPONENT ConCPlugins)
+			endif()
         ENDIF()
       ENDIF()
     ENDFOREACH()
@@ -657,6 +661,7 @@ SET(MARIADBCPP_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/include PARENT_SCOPE)
 # MSI
 IF(WIN32)
   IF(WITH_MSI)
+	MESSAGE(STATUS "MariaDB: WITH_MSI!")
     ADD_CUSTOM_COMMAND(TARGET ${LIBRARY_NAME} POST_BUILD
       COMMAND ${CMAKE_COMMAND} ARGS -DDRIVER_LIB_DIR=$<TARGET_FILE_DIR:${LIBRARY_NAME}>
                                     -DPLUGINS_LIB_DIR=$<TARGET_FILE_DIR:dialog>
@@ -672,28 +677,32 @@ ELSE()
     #MESSAGE(STATUS "Configuring to generate PKG package")
     #ADD_SUBDIRECTORY(osxinstall)
   ENDIF()
-  INSTALL(TARGETS
-          ${LIBRARY_NAME}
-          LIBRARY DESTINATION ${INSTALL_LIBDIR}
-          COMPONENT SharedLibraries)
-  INSTALL(TARGETS
-          ${STATIC_LIBRARY_NAME}
-          ARCHIVE DESTINATION ${INSTALL_LIBDIR}
-          COMPONENT Development)
+  if(NOT IGNORE_PACKAGING)
+	  INSTALL(TARGETS
+			  ${LIBRARY_NAME}
+			  LIBRARY DESTINATION ${INSTALL_LIBDIR}
+			  COMPONENT SharedLibraries)
+	  INSTALL(TARGETS
+			  ${STATIC_LIBRARY_NAME}
+			  ARCHIVE DESTINATION ${INSTALL_LIBDIR}
+			  COMPONENT Development)
+  endif()
 
   MESSAGE(STATUS "Documentation installed to ${INSTALL_DOCDIR}")
   MESSAGE(STATUS "License file installed to ${INSTALL_LICENSEDIR}")
   MESSAGE(STATUS "Public API header files installed to ${INSTALL_INCLUDEDIR}")
-  INSTALL(FILES
-          ${CMAKE_CURRENT_SOURCE_DIR}/README
-          DESTINATION
-          ${INSTALL_DOCDIR}
-          COMPONENT Documentation)
-  INSTALL(FILES
-          ${CMAKE_CURRENT_SOURCE_DIR}/COPYING
-          DESTINATION
-          ${INSTALL_LICENSEDIR}
-          COMPONENT Documentation)
+  if(NOT IGNORE_PACKAGING)
+	  INSTALL(FILES
+			  ${CMAKE_CURRENT_SOURCE_DIR}/README
+			  DESTINATION
+			  ${INSTALL_DOCDIR}
+			  COMPONENT Documentation)
+	  INSTALL(FILES
+			  ${CMAKE_CURRENT_SOURCE_DIR}/COPYING
+			  DESTINATION
+			  ${INSTALL_LICENSEDIR}
+			  COMPONENT Documentation)
+  endif()
   ADD_SUBDIRECTORY(include)
 ENDIF()
 # Tests. Checking if we have them. May be not the case if we are building from source package
