@@ -29,12 +29,12 @@ ELSE()
 
   SET(LIBRARY_NAME "libmariadbcpp.so")
 
-  EXECUTE_PROCESS(COMMAND tar zxf Z:/ProgrOld/eternaljk2mv/jk2mv/build/msvc16_x64/mariadb-connector-cpp-1.0.4-win32.tar.gz)
+  EXECUTE_PROCESS(COMMAND tar zxf E:/tom/build_output/mariadb-connector-cpp-1.0.4-win32.tar.gz)
   ADD_CUSTOM_TARGET(LIST_CONTENTS
-      COMMAND ls -lR ${CMAKE_BINARY_DIR}/mariadb-connector-cpp-1.0.4-win32//mariadb/*.so* ${CMAKE_BINARY_DIR}/mariadb-connector-cpp-1.0.4-win32/)
+      COMMAND ls -lR ${CMAKE_BINARY_DIR}/mariadb-connector-cpp-1.0.4-win32/lib/mariadb/*.so* ${CMAKE_BINARY_DIR}/mariadb-connector-cpp-1.0.4-win32/)
 
   FILE(GLOB LIBS_IN_PACK
-       ${CMAKE_BINARY_DIR}/mariadb-connector-cpp-1.0.4-win32//mariadb/lib*.so*)
+       ${CMAKE_BINARY_DIR}/mariadb-connector-cpp-1.0.4-win32/lib/mariadb/lib*.so*)
   MESSAGE(STATUS "Configuring to search for headers in the ${CMAKE_BINARY_DIR}/mariadb-connector-cpp-1.0.4-win32/include")
   INCLUDE_DIRECTORIES("${CMAKE_BINARY_DIR}/mariadb-connector-cpp-1.0.4-win32/include")
   ADD_EXECUTABLE(example example.cpp)
