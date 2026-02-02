@@ -32,19 +32,35 @@
 		</Project>
 		<Project Path="../../ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="992c0ba8-1846-334b-9e81-1987340459b2"/>
 	</Folder>
-	<Folder Name="/libs/"/>
+	<Folder Name="/libs/">
+		<Project Path="../zlib/zlib.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="2dbf16b8-fb39-3a7b-8d9f-e355603ad78c">
+			<BuildDependency Project="../../ZERO_CHECK.vcxproj"/>
+		</Project>
+	</Folder>
 	<Folder Name="/libs/mariadb/">
 		<Project Path="DEPENDENCIES_FOR_PACKAGE.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="f9d4a144-4745-3c0e-8acf-1bb3db3357d6">
 			<BuildDependency Project="../../ZERO_CHECK.vcxproj"/>
 		</Project>
+		<Project Path="libmariadb/libmariadb/mariadb_obj.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="27cdbbab-0593-3b34-a730-791fae1534fc">
+			<BuildDependency Project="../../ZERO_CHECK.vcxproj"/>
+		</Project>
+		<Project Path="libmariadb/libmariadb/mariadbclient.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="83bbe4ce-e4f9-3262-82b7-2c85c9f36cb4">
+			<BuildDependency Project="../../ZERO_CHECK.vcxproj"/>
+			<BuildDependency Project="libmariadb/libmariadb/mariadb_obj.vcxproj"/>
+			<BuildDependency Project="../zlib/zlib.vcxproj"/>
+		</Project>
 		<Project Path="mariadbcpp.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="3228e745-ae6d-3e96-ae33-1830a3f5e7f7">
 			<BuildDependency Project="DEPENDENCIES_FOR_PACKAGE.vcxproj"/>
 			<BuildDependency Project="../../ZERO_CHECK.vcxproj"/>
+			<BuildDependency Project="libmariadb/libmariadb/mariadbclient.vcxproj"/>
 			<BuildDependency Project="mariadbcpp_obj.vcxproj"/>
+			<BuildDependency Project="../zlib/zlib.vcxproj"/>
 		</Project>
 		<Project Path="mariadbcpp-static.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="0b4d3156-65c2-3cbe-b8a1-a511d2a9748f">
 			<BuildDependency Project="../../ZERO_CHECK.vcxproj"/>
+			<BuildDependency Project="libmariadb/libmariadb/mariadbclient.vcxproj"/>
 			<BuildDependency Project="mariadbcpp_obj.vcxproj"/>
+			<BuildDependency Project="../zlib/zlib.vcxproj"/>
 		</Project>
 		<Project Path="mariadbcpp_obj.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="9390e16d-42e8-347c-be40-8a3859c5f2e8">
 			<BuildDependency Project="../../ZERO_CHECK.vcxproj"/>
