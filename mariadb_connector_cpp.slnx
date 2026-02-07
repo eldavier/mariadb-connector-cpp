@@ -46,23 +46,31 @@
 		</Project>
 		<Project Path="libmariadb/libmariadb/mariadbclient.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="83bbe4ce-e4f9-3262-82b7-2c85c9f36cb4">
 			<BuildDependency Project="../../ZERO_CHECK.vcxproj"/>
+			<BuildDependency Project="../zstd/build/cmake/lib/libzstd_static.vcxproj"/>
 			<BuildDependency Project="libmariadb/libmariadb/mariadb_obj.vcxproj"/>
 			<BuildDependency Project="../zlib/zlib.vcxproj"/>
 		</Project>
 		<Project Path="mariadbcpp.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="3228e745-ae6d-3e96-ae33-1830a3f5e7f7">
 			<BuildDependency Project="DEPENDENCIES_FOR_PACKAGE.vcxproj"/>
 			<BuildDependency Project="../../ZERO_CHECK.vcxproj"/>
+			<BuildDependency Project="../zstd/build/cmake/lib/libzstd_static.vcxproj"/>
 			<BuildDependency Project="libmariadb/libmariadb/mariadbclient.vcxproj"/>
 			<BuildDependency Project="mariadbcpp_obj.vcxproj"/>
 			<BuildDependency Project="../zlib/zlib.vcxproj"/>
 		</Project>
 		<Project Path="mariadbcpp-static.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="0b4d3156-65c2-3cbe-b8a1-a511d2a9748f">
 			<BuildDependency Project="../../ZERO_CHECK.vcxproj"/>
+			<BuildDependency Project="../zstd/build/cmake/lib/libzstd_static.vcxproj"/>
 			<BuildDependency Project="libmariadb/libmariadb/mariadbclient.vcxproj"/>
 			<BuildDependency Project="mariadbcpp_obj.vcxproj"/>
 			<BuildDependency Project="../zlib/zlib.vcxproj"/>
 		</Project>
 		<Project Path="mariadbcpp_obj.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="9390e16d-42e8-347c-be40-8a3859c5f2e8">
+			<BuildDependency Project="../../ZERO_CHECK.vcxproj"/>
+		</Project>
+	</Folder>
+	<Folder Name="/libs/zstd/">
+		<Project Path="../zstd/build/cmake/lib/libzstd_static.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="a462f389-eab9-3469-aba9-7d36f233a7d7">
 			<BuildDependency Project="../../ZERO_CHECK.vcxproj"/>
 		</Project>
 	</Folder>
